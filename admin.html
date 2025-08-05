@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>لوحة المشرف - متجر بلدروز</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-bar">
+    <div class="brand">
+      <img src="favicon.png" alt="شعار متجر بلدروز" class="logo" />
+      <h1>لوحة المشرف</h1>
+    </div>
+    <nav class="actions">
+      <a class="btn ghost" href="index.html">الواجهة الرئيسية</a>
+      <button id="signInBtn" class="btn primary">تسجيل دخول</button>
+      <button id="signOutBtn" class="btn ghost" hidden>تسجيل خروج</button>
+    </nav>
+  </header>
+
+  <main class="admin-wrap">
+    <p class="note">ملاحظة: فقط البريد التالي لديه صلاحية الإضافة: <b>alshmryh972@gmail.com</b></p>
+    <p id="gateMsg" class="warn"></p>
+
+    <section id="adminFormSec" hidden>
+      <h2 style="margin:6px 0 12px 0">إضافة منتج جديد</h2>
+      <div class="form-grid">
+        <div class="field">
+          <label for="name">اسم المنتج</label>
+          <input id="name" class="input" type="text" placeholder="مثال: تمر ديالى فاخر" required />
+        </div>
+        <div class="field">
+          <label for="price">السعر (د.ع)</label>
+          <input id="price" class="input" type="number" min="0" step="1" placeholder="مثال: 5000" required />
+        </div>
+        <div class="field full">
+          <label for="description">الوصف</label>
+          <textarea id="description" class="input" rows="3" placeholder="وصف مختصر للجودة والوزن والتفاصيل"></textarea>
+        </div>
+        <div class="field full">
+          <label for="image">صورة المنتج</label>
+          <input id="image" class="input" type="file" accept="image/*" />
+          <div id="preview" class="preview" style="margin-top:8px">
+            لا توجد صورة محددة بعد.
+          </div>
+        </div>
+        <div class="field full" style="display:flex; gap:8px; align-items:center; justify-content:flex-start; margin-top:8px">
+          <button id="saveBtn" class="btn primary" type="button">حفظ المنتج</button>
+          <button id="clearBtn" class="btn ghost" type="button">تفريغ الحقول</button>
+          <span id="status" class="note"></span>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:18px">
+      <h3 style="margin:8px 0">المنتجات الحالية</h3>
+      <div id="adminProducts" class="products-section">
+        <div class="grid" id="adminGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+
+  <script src="app.js" defer></script>
+  <script src="admin.js" defer></script>
+</body>
+</html>
