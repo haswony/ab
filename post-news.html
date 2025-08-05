@@ -339,6 +339,7 @@
             <div class="nav-buttons">
                 <a href="index.html" class="btn btn-secondary">الرئيسية</a>
                 <a href="register.html" class="btn btn-secondary">التسجيل</a>
+                <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
                 <a href="post-news.html" class="btn btn-primary">نشر خبر</a>
                 <button class="btn btn-danger hidden" onclick="logout()" id="logoutBtn">تسجيل الخروج</button>
             </div>
@@ -350,21 +351,15 @@
         <div class="container">
             <!-- Login Section -->
             <div id="loginSection" class="login-section">
-                <h1 class="login-title">تسجيل الدخول</h1>
+                <h1 class="login-title">تسجيل الدخول مطلوب</h1>
                 <p class="login-subtitle">يجب تسجيل الدخول أولاً لتتمكن من نشر الأخبار</p>
                 
-                <form class="login-form" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label for="loginEmail">البريد الإلكتروني</label>
-                        <input type="email" id="loginEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">كلمة المرور</label>
-                        <input type="password" id="loginPassword" required>
-                    </div>
-                    <button type="submit" class="submit-btn">تسجيل الدخول</button>
-                    <div id="loginMessage"></div>
-                </form>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="login.html" class="submit-btn" style="text-decoration: none; display: inline-block; margin-bottom: 1rem;">تسجيل الدخول</a>
+                    <p style="margin-top: 1rem; color: #6c757d;">
+                        ليس لديك حساب؟ <a href="register.html" style="color: #2c3e50; text-decoration: none; font-weight: 600;">إنشاء حساب جديد</a>
+                    </p>
+                </div>
             </div>
 
             <!-- Post Form Section -->
@@ -487,33 +482,7 @@
             document.getElementById('userName').textContent = user.displayName || user.email;
         }
 
-        async function handleLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const messageDiv = document.getElementById('loginMessage');
-
-            try {
-                await window.signInWithEmailAndPassword(window.auth, email, password);
-                messageDiv.innerHTML = '<div class="message success">تم تسجيل الدخول بنجاح</div>';
-            } catch (error) {
-                let errorMessage = 'خطأ في البريد الإلكتروني أو كلمة المرور';
-                
-                switch (error.code) {
-                    case 'auth/user-not-found':
-                        errorMessage = 'المستخدم غير موجود';
-                        break;
-                    case 'auth/wrong-password':
-                        errorMessage = 'كلمة المرور غير صحيحة';
-                        break;
-                    case 'auth/invalid-email':
-                        errorMessage = 'البريد الإلكتروني غير صحيح';
-                        break;
-                }
-                
-                messageDiv.innerHTML = `<div class="message error">${errorMessage}</div>`;
-            }
-        }
+        // Login function removed - users are redirected to login.html page
 
         async function logout() {
             try {
