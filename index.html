@@ -14,83 +14,20 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: #ffffff;
             color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Background Animation */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(102, 126, 234, 0.1) 0%, 
-                rgba(118, 75, 162, 0.1) 25%,
-                rgba(255, 154, 158, 0.1) 50%,
-                rgba(250, 208, 196, 0.1) 75%,
-                rgba(102, 126, 234, 0.1) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+            line-height: 1.6;
         }
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            background-color: #ffffff;
+            border-bottom: 2px solid #f0f0f0;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .nav {
@@ -103,20 +40,10 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            color: white;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-            }
+            color: #2c3e50;
+            text-decoration: none;
         }
 
         .nav-buttons {
@@ -126,126 +53,73 @@
 
         .btn {
             padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 50px;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
             font-family: 'Cairo', sans-serif;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
+            transition: all 0.2s ease;
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            background-color: #2c3e50;
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+            background-color: #34495e;
+            border-color: #34495e;
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: transparent;
+            color: #2c3e50;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            background-color: #2c3e50;
+            color: white;
         }
 
         /* Hero Section */
         .hero {
+            background-color: #f8f9fa;
             text-align: center;
             padding: 4rem 1rem;
-            position: relative;
+            border-bottom: 1px solid #e9ecef;
         }
 
         .hero-title {
             font-size: 3.5rem;
             font-weight: 800;
-            color: white;
+            color: #2c3e50;
             margin-bottom: 1rem;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-            animation: slideInDown 1s ease;
         }
 
         .hero-subtitle {
             font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: #6c757d;
             margin-bottom: 2rem;
-            animation: slideInUp 1s ease 0.2s both;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-image {
             width: 300px;
             height: 200px;
             margin: 2rem auto;
-            border-radius: 20px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: slideInUp 1s ease 0.4s both;
-            position: relative;
-        }
-
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
-            z-index: 1;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Main Content */
@@ -255,89 +129,61 @@
             padding: 0 1rem;
         }
 
+        .posts-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
         .posts-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
-            padding: 2rem 0;
         }
 
         .post {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
             overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeInUp 0.6s ease;
-        }
-
-        .post::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease infinite;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.2s ease;
         }
 
         .post:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .post-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-color: #f8f9fa;
             position: relative;
-            overflow: hidden;
-        }
-
-        .post-image::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .post-image::after {
-            content: '📰';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
-            z-index: 1;
         }
 
         .post-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s ease;
         }
 
-        .post:hover .post-image img {
-            transform: scale(1.1);
+        .post-image::after {
+            content: '📰';
+            font-size: 3rem;
+            color: #6c757d;
+        }
+
+        .post-image:has(img)::after {
+            display: none;
         }
 
         .post-content {
@@ -347,15 +193,15 @@
         .post-title {
             font-size: 1.4rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
             line-height: 1.4;
         }
 
         .post-excerpt {
-            color: #666;
+            color: #6c757d;
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .post-meta {
@@ -363,231 +209,115 @@
             justify-content: space-between;
             align-items: center;
             font-size: 0.9rem;
-            color: #888;
+            color: #868e96;
         }
 
         .read-more {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background-color: #2c3e50;
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 20px;
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease;
         }
 
         .read-more:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background-color: #34495e;
         }
 
-        /* Admin Panel */
-        .admin-panel {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
+        /* Post Detail Page */
+        .post-detail {
+            background-color: #ffffff;
+            border-radius: 12px;
             padding: 2rem;
             margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeInUp 0.8s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            border-radius: 15px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
-            transform: scale(1.02);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Login Form */
-        .login-container {
-            max-width: 450px;
-            margin: 4rem auto;
-            padding: 0 1rem;
-        }
-
-        .login-form {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            animation: fadeInUp 0.8s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-title {
-            font-size: 2.2rem;
+        .post-detail-title {
+            font-size: 2.5rem;
             font-weight: 800;
-            color: #333;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-tabs {
-            display: flex;
-            margin-bottom: 2rem;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 15px;
-            padding: 0.3rem;
-        }
-
-        .login-tab {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            background: transparent;
-            border-radius: 12px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-        }
-
-        .login-tab.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .google-btn {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #4285f4;
-            border-radius: 15px;
-            background: white;
-            color: #4285f4;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .google-btn:hover {
-            background: #4285f4;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(66, 133, 244, 0.3);
-        }
-
-        .google-icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            color: #888;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .divider span {
-            padding: 0 1rem;
-            font-size: 0.9rem;
-        }
-
-        .register-form {
-            display: none;
-        }
-
-        .register-form.active {
-            display: block;
-        }
-
-        .login-form-content {
-            display: block;
-        }
-
-        .login-form-content.hidden {
-            display: none;
-        }
-
-        .user-info {
-            background: rgba(102, 126, 234, 0.1);
-            padding: 1rem;
-            border-radius: 15px;
+            color: #2c3e50;
             margin-bottom: 1rem;
-            text-align: right;
+            line-height: 1.3;
         }
 
-        .user-role {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
+        .post-detail-meta {
+            color: #6c757d;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .post-detail-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .post-detail-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #495057;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
             font-weight: 600;
-            margin-top: 0.5rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: background-color 0.2s ease;
         }
 
-        .user-role.admin {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+
+        /* Message styles */
+        .message {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
             color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
 
-        .user-role.user {
-            background: linear-gradient(45deg, #4ecdc4, #44e08e);
-            color: white;
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .footer p {
+            margin-bottom: 0.5rem;
         }
 
         /* Responsive */
@@ -613,128 +343,22 @@
             .nav-buttons {
                 justify-content: center;
             }
-        }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
+            .section-title {
+                font-size: 2rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Message styles */
-        .message {
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 15px;
-            font-weight: 600;
-            text-align: center;
-            animation: slideInRight 0.5s ease;
-        }
-
-        .message.success {
-            background: linear-gradient(45deg, #4ecdc4, #44e08e);
-            color: white;
-        }
-
-        .message.error {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Post detail styles */
-        .post-detail {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            padding: 2rem;
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .post-detail-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .post-detail-meta {
-            color: #888;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
-
-        .post-detail-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-        }
-
-        .post-detail-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #444;
-        }
-
-        .back-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-family: 'Cairo', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
     </style>
 </head>
 <body>
-    <!-- Floating Particles -->
-    <div class="particles" id="particles"></div>
-
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">بلدروز</div>
+            <a href="#" class="logo" onclick="showHome()">بلدروز</a>
             <div class="nav-buttons">
                 <a href="#" class="btn btn-secondary" onclick="showHome()">الرئيسية</a>
-                <a href="#" class="btn btn-primary" onclick="showLogin()" id="loginBtn">تسجيل الدخول</a>
-                <div class="user-info hidden" id="userInfo">
-                    <div>مرحباً، <span id="userName"></span></div>
-                    <span class="user-role" id="userRole"></span>
-                </div>
-                <a href="#" class="btn btn-primary hidden" onclick="logout()" id="logoutBtn">تسجيل الخروج</a>
+                <a href="register.html" class="btn btn-secondary">التسجيل</a>
+                <a href="post-news.html" class="btn btn-primary">نشر خبر</a>
             </div>
         </nav>
     </header>
@@ -751,100 +375,12 @@
         </section>
 
         <!-- Posts Section -->
-        <div class="container">
-            <div class="posts-grid" id="postsGrid"></div>
-        </div>
-    </div>
-
-    <!-- Login Page -->
-    <div id="loginPage" class="hidden">
-        <div class="login-container">
-            <div class="login-form">
-                <h2 class="login-title">مرحباً بك</h2>
-                
-                <!-- Login Tabs -->
-                <div class="login-tabs">
-                    <button type="button" class="login-tab active" onclick="switchTab('login')">تسجيل الدخول</button>
-                    <button type="button" class="login-tab" onclick="switchTab('register')">إنشاء حساب</button>
-                </div>
-
-                <!-- Google Login Button -->
-                <button type="button" class="google-btn" onclick="signInWithGoogle()">
-                    <svg class="google-icon" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    المتابعة مع Google
-                </button>
-
-                <div class="divider">
-                    <span>أو</span>
-                </div>
-
-                <!-- Login Form -->
-                <form class="login-form-content" id="loginForm" onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="loginEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور</label>
-                        <input type="password" id="loginPassword" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
-                </form>
-
-                <!-- Register Form -->
-                <form class="register-form" id="registerForm" onsubmit="handleRegister(event)">
-                    <div class="form-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" id="registerName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>البريد الإلكتروني</label>
-                        <input type="email" id="registerEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label>كلمة المرور</label>
-                        <input type="password" id="registerPassword" required minlength="6">
-                    </div>
-                    <div class="form-group">
-                        <label>تأكيد كلمة المرور</label>
-                        <input type="password" id="confirmPassword" required minlength="6">
-                    </div>
-                    <button type="submit" class="btn btn-primary">إنشاء حساب</button>
-                </form>
-
-                <div id="loginMessage"></div>
+        <section class="posts-section">
+            <div class="container">
+                <h2 class="section-title">آخر الأخبار</h2>
+                <div class="posts-grid" id="postsGrid"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanel" class="hidden">
-        <div class="container">
-            <div class="admin-panel">
-                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; font-weight: 700; color: #333;">لوحة التحكم</h2>
-                <form onsubmit="handlePostSubmit(event)">
-                    <div class="form-group">
-                        <label>عنوان الخبر</label>
-                        <input type="text" id="postTitle" required>
-                    </div>
-                    <div class="form-group">
-                        <label>رابط الصورة (اختياري)</label>
-                        <input type="url" id="postImage">
-                    </div>
-                    <div class="form-group">
-                        <label>محتوى الخبر</label>
-                        <textarea id="postContent" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">نشر الخبر</button>
-                    <div id="postMessage"></div>
-                </form>
-            </div>
-        </div>
+        </section>
     </div>
 
     <!-- Post Detail Page -->
@@ -855,11 +391,18 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 بلدروز - جميع الحقوق محفوظة</p>
+            <p>أخبار قضاء بلدروز - محافظة ديالى - العراق</p>
+        </div>
+    </footer>
+
     <!-- Firebase Scripts -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-        import { getDatabase, ref, push, onValue, get, set } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
-        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, updateProfile } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getDatabase, ref, push, onValue, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
 
         const firebaseConfig = {
             apiKey: "AIzaSyBebtWIuyUC0mCUHz3G3gPsvtOMWfuBr40",
@@ -874,319 +417,34 @@
 
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
-        const auth = getAuth(app);
-        const googleProvider = new GoogleAuthProvider();
 
         // Global variables
-        window.auth = auth;
         window.database = database;
         window.ref = ref;
         window.push = push;
         window.onValue = onValue;
         window.get = get;
-        window.set = set;
-        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
-        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-        window.signInWithPopup = signInWithPopup;
-        window.googleProvider = googleProvider;
-        window.signOut = signOut;
-        window.updateProfile = updateProfile;
 
         // Initialize app
         window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
             loadPosts();
-            
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    // User is signed in
-                    const isAdmin = user.email === 'alshmryh972@gmail.com';
-                    const userName = user.displayName || user.email.split('@')[0];
-                    
-                    // Save user data to database
-                    await saveUserData(user, isAdmin);
-                    
-                    // Update UI
-                    document.getElementById('loginBtn').classList.add('hidden');
-                    document.getElementById('logoutBtn').classList.remove('hidden');
-                    document.getElementById('userInfo').classList.remove('hidden');
-                    document.getElementById('userName').textContent = userName;
-                    
-                    const userRoleElement = document.getElementById('userRole');
-                    if (isAdmin) {
-                        userRoleElement.textContent = 'مشرف';
-                        userRoleElement.className = 'user-role admin';
-                    } else {
-                        userRoleElement.textContent = 'عضو';
-                        userRoleElement.className = 'user-role user';
-                    }
-                } else {
-                    // User is signed out
-                    document.getElementById('loginBtn').classList.remove('hidden');
-                    document.getElementById('logoutBtn').classList.add('hidden');
-                    document.getElementById('userInfo').classList.add('hidden');
-                    hideAdmin();
-                }
-            });
         });
-
-        // Save user data to database
-        async function saveUserData(user, isAdmin) {
-            const userData = {
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName || user.email.split('@')[0],
-                photoURL: user.photoURL || '',
-                isAdmin: isAdmin,
-                lastLogin: new Date().toISOString()
-            };
-            
-            try {
-                await window.set(window.ref(window.database, `users/${user.uid}`), userData);
-            } catch (error) {
-                console.error('خطأ في حفظ بيانات المستخدم:', error);
-            }
-        }
-
-        window.saveUserData = saveUserData;
     </script>
 
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
         // Navigation functions
         function showHome() {
             document.getElementById('homePage').classList.remove('hidden');
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('adminPanel').classList.add('hidden');
             document.getElementById('postDetailPage').classList.add('hidden');
-        }
-
-        function showLogin() {
-            document.getElementById('homePage').classList.add('hidden');
-            document.getElementById('loginPage').classList.remove('hidden');
-            document.getElementById('adminPanel').classList.add('hidden');
-            document.getElementById('postDetailPage').classList.add('hidden');
-        }
-
-        function showAdmin() {
-            document.getElementById('homePage').classList.add('hidden');
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('adminPanel').classList.remove('hidden');
-            document.getElementById('postDetailPage').classList.add('hidden');
-        }
-
-        function hideAdmin() {
-            document.getElementById('adminPanel').classList.add('hidden');
         }
 
         function showPostDetail(postId) {
             document.getElementById('homePage').classList.add('hidden');
-            document.getElementById('loginPage').classList.add('hidden');
-            document.getElementById('adminPanel').classList.add('hidden');
             document.getElementById('postDetailPage').classList.remove('hidden');
             loadPostDetail(postId);
         }
 
-        // Tab switching function
-        function switchTab(tab) {
-            const loginTab = document.querySelector('.login-tab');
-            const registerTab = document.querySelectorAll('.login-tab')[1];
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            
-            if (tab === 'login') {
-                loginTab.classList.add('active');
-                registerTab.classList.remove('active');
-                loginForm.classList.remove('hidden');
-                registerForm.classList.remove('active');
-            } else {
-                registerTab.classList.add('active');
-                loginTab.classList.remove('active');
-                loginForm.classList.add('hidden');
-                registerForm.classList.add('active');
-            }
-        }
-
-        // Google Sign In
-        async function signInWithGoogle() {
-            const messageDiv = document.getElementById('loginMessage');
-            try {
-                const result = await window.signInWithPopup(window.auth, window.googleProvider);
-                const user = result.user;
-                const isAdmin = user.email === 'alshmryh972@gmail.com';
-                
-                await window.saveUserData(user, isAdmin);
-                
-                messageDiv.innerHTML = '<div class="message success">تم تسجيل الدخول بنجاح</div>';
-                setTimeout(() => {
-                    if (isAdmin) {
-                        showAdmin();
-                    } else {
-                        showHome();
-                    }
-                }, 1000);
-            } catch (error) {
-                messageDiv.innerHTML = '<div class="message error">حدث خطأ أثناء تسجيل الدخول مع Google</div>';
-                console.error('خطأ Google Sign In:', error);
-            }
-        }
-
-        // Authentication functions
-        async function handleLogin(event) {
-            event.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const messageDiv = document.getElementById('loginMessage');
-
-            try {
-                const userCredential = await window.signInWithEmailAndPassword(window.auth, email, password);
-                const user = userCredential.user;
-                const isAdmin = user.email === 'alshmryh972@gmail.com';
-                
-                await window.saveUserData(user, isAdmin);
-                
-                messageDiv.innerHTML = '<div class="message success">تم تسجيل الدخول بنجاح</div>';
-                setTimeout(() => {
-                    if (isAdmin) {
-                        showAdmin();
-                    } else {
-                        showHome();
-                    }
-                }, 1000);
-            } catch (error) {
-                let errorMessage = 'خطأ في البريد الإلكتروني أو كلمة المرور';
-                if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'المستخدم غير موجود';
-                } else if (error.code === 'auth/wrong-password') {
-                    errorMessage = 'كلمة المرور غير صحيحة';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'البريد الإلكتروني غير صحيح';
-                }
-                messageDiv.innerHTML = `<div class="message error">${errorMessage}</div>`;
-            }
-        }
-
-        async function handleRegister(event) {
-            event.preventDefault();
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const messageDiv = document.getElementById('loginMessage');
-
-            if (password !== confirmPassword) {
-                messageDiv.innerHTML = '<div class="message error">كلمة المرور غير متطابقة</div>';
-                return;
-            }
-
-            try {
-                const userCredential = await window.createUserWithEmailAndPassword(window.auth, email, password);
-                const user = userCredential.user;
-                
-                // Update profile with display name
-                await window.updateProfile(user, {
-                    displayName: name
-                });
-
-                const isAdmin = user.email === 'alshmryh972@gmail.com';
-                await window.saveUserData(user, isAdmin);
-
-                messageDiv.innerHTML = '<div class="message success">تم إنشاء الحساب بنجاح</div>';
-                setTimeout(() => {
-                    if (isAdmin) {
-                        showAdmin();
-                    } else {
-                        showHome();
-                    }
-                }, 1000);
-            } catch (error) {
-                let errorMessage = 'حدث خطأ أثناء إنشاء الحساب';
-                if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'البريد الإلكتروني مستخدم بالفعل';
-                } else if (error.code === 'auth/weak-password') {
-                    errorMessage = 'كلمة المرور ضعيفة جداً';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'البريد الإلكتروني غير صحيح';
-                }
-                messageDiv.innerHTML = `<div class="message error">${errorMessage}</div>`;
-            }
-        }
-
-        async function logout() {
-            try {
-                await window.signOut(window.auth);
-                showHome();
-            } catch (error) {
-                console.error('خطأ في تسجيل الخروج:', error);
-            }
-        }
-
-        function showAdmin() {
-            // Only show admin panel if user is admin
-            window.auth.onAuthStateChanged((user) => {
-                if (user && user.email === 'alshmryh972@gmail.com') {
-                    document.getElementById('homePage').classList.add('hidden');
-                    document.getElementById('loginPage').classList.add('hidden');
-                    document.getElementById('adminPanel').classList.remove('hidden');
-                    document.getElementById('postDetailPage').classList.add('hidden');
-                }
-            });
-        }
-
         // Post functions
-        async function handlePostSubmit(event) {
-            event.preventDefault();
-            
-            // Check if user is admin
-            const user = window.auth.currentUser;
-            if (!user || user.email !== 'alshmryh972@gmail.com') {
-                document.getElementById('postMessage').innerHTML = '<div class="message error">ليس لديك صلاحية للنشر</div>';
-                return;
-            }
-
-            const title = document.getElementById('postTitle').value;
-            const content = document.getElementById('postContent').value;
-            const imageUrl = document.getElementById('postImage').value;
-            const messageDiv = document.getElementById('postMessage');
-
-            const postData = {
-                title: title,
-                content: content,
-                imageUrl: imageUrl || '',
-                timestamp: new Date().toISOString(),
-                date: new Date().toLocaleDateString('ar-EG'),
-                authorName: user.displayName || user.email.split('@')[0],
-                authorEmail: user.email
-            };
-
-            try {
-                await window.push(window.ref(window.database, 'posts'), postData);
-                messageDiv.innerHTML = '<div class="message success">تم نشر الخبر بنجاح</div>';
-                
-                // Clear form
-                document.getElementById('postTitle').value = '';
-                document.getElementById('postContent').value = '';
-                document.getElementById('postImage').value = '';
-                
-                // Reload posts
-                loadPosts();
-            } catch (error) {
-                messageDiv.innerHTML = '<div class="message error">حدث خطأ أثناء النشر</div>';
-            }
-        }
-
         function loadPosts() {
             const postsRef = window.ref(window.database, 'posts');
             window.onValue(postsRef, (snapshot) => {
@@ -1201,7 +459,7 @@
 
             if (!posts) {
                 postsGrid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: white; font-size: 1.2rem;">
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: #6c757d; font-size: 1.2rem;">
                         لا توجد أخبار حالياً
                     </div>
                 `;
@@ -1218,9 +476,9 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
                 
-                const excerpt = post.content.length > 150 
-                    ? post.content.substring(0, 150) + '...' 
-                    : post.content;
+                const excerpt = (post.content && post.content.length > 150)
+                    ? post.content.substring(0, 150) + '...'
+                    : (post.content || 'لا يوجد محتوى');
 
                 postElement.innerHTML = `
                     <div class="post-image">
