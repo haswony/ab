@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - بلدروز</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background-color: #ffffff;
+            border-bottom: 2px solid #f0f0f0;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #34495e;
+            border-color: #34495e;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #2c3e50;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            background-color: #ffffff;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2c3e50;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #34495e;
+        }
+
+        .submit-btn:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Message styles */
+        .message {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: #6c757d;
+        }
+
+        .register-link a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: #6c757d;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .login-title {
+                font-size: 2rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">بلدروز</a>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-secondary">الرئيسية</a>
+                <a href="register.html" class="btn btn-secondary">التسجيل</a>
+                <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+                <a href="post-news.html" class="btn btn-secondary">نشر خبر</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="login-container">
+            <h1 class="login-title">تسجيل الدخول</h1>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">تسجيل الدخول</button>
+                
+                <div class="forgot-password">
+                    <a href="#" onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+                </div>
+                
+                <div id="loginMessage"></div>
+            </form>
+
+            <div class="register-link">
+                <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 بلدروز - جميع الحقوق محفوظة</p>
+            <p>أخبار قضاء بلدروز - محافظة ديالى - العراق</p>
+        </div>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBebtWIuyUC0mCUHz3G3gPsvtOMWfuBr40",
+            authDomain: "baladroz-be563.firebaseapp.com",
+            databaseURL: "https://baladroz-be563-default-rtdb.firebaseio.com",
+            projectId: "baladroz-be563",
+            storageBucket: "baladroz-be563.appspot.com",
+            messagingSenderId: "910470723253",
+            appId: "1:910470723253:web:5892ecf305d96d118ab0fc",
+            measurementId: "G-55B3DD8X4P"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Global variables
+        window.auth = auth;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+    </script>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'جاري تسجيل الدخول...';
+
+            // Sign in user
+            window.signInWithEmailAndPassword(window.auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    messageDiv.innerHTML = '<div class="message success">تم تسجيل الدخول بنجاح! سيتم توجيهك...</div>';
+                    
+                    // Redirect based on user type or to post news page
+                    setTimeout(() => {
+                        window.location.href = 'post-news.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    let errorMessage = 'خطأ في البريد الإلكتروني أو كلمة المرور';
+                    
+                    switch (error.code) {
+                        case 'auth/user-not-found':
+                            errorMessage = 'المستخدم غير موجود';
+                            break;
+                        case 'auth/wrong-password':
+                            errorMessage = 'كلمة المرور غير صحيحة';
+                            break;
+                        case 'auth/invalid-email':
+                            errorMessage = 'البريد الإلكتروني غير صحيح';
+                            break;
+                        case 'auth/too-many-requests':
+                            errorMessage = 'تم تجاوز عدد المحاولات المسموحة. حاول مرة أخرى لاحقاً';
+                            break;
+                    }
+                    
+                    messageDiv.innerHTML = `<div class="message error">${errorMessage}</div>`;
+                })
+                .finally(() => {
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'تسجيل الدخول';
+                });
+        }
+
+        function showForgotPassword() {
+            alert('سيتم إضافة خاصية استعادة كلمة المرور قريباً');
+        }
+    </script>
+</body>
+</html>
