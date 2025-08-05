@@ -456,13 +456,16 @@
 
         // Initialize app
         window.addEventListener('DOMContentLoaded', () => {
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    showPostForm(user);
-                } else {
-                    showLoginForm();
-                }
-            });
+            // Check localStorage for login status (Google Auth simulation)
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userData = localStorage.getItem('user');
+            
+            if (isLoggedIn === 'true' && userData) {
+                const user = JSON.parse(userData);
+                showPostForm(user);
+            } else {
+                showLoginForm();
+            }
         });
     </script>
 
@@ -479,18 +482,26 @@
             document.getElementById('logoutBtn').classList.remove('hidden');
             
             // Update user info
-            document.getElementById('userName').textContent = user.displayName || user.email;
+            document.getElementById('userName').textContent = user.name || user.email;
         }
 
         // Login function removed - users are redirected to login.html page
 
-        async function logout() {
-            try {
-                await window.signOut(window.auth);
-                showLoginForm();
-            } catch (error) {
-                console.error('خطأ في تسجيل الخروج:', error);
-            }
+        function logout() {
+            // Clear localStorage
+            localStorage.removeItem('user');
+            localStorage.removeItem('isLoggedIn');
+            
+            // Show login form
+            showLoginForm();
+            
+            // Show success message
+            alert('تم تسجيل الخروج بنجاح');
+            
+            // Redirect to home page
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
         }
 
         async function handlePostSubmit(event) {
