@@ -250,6 +250,7 @@
             <div class="nav-buttons">
                 <a href="index.html" class="btn btn-secondary">الرئيسية</a>
                 <a href="register.html" class="btn btn-primary">التسجيل</a>
+                <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
                 <a href="post-news.html" class="btn btn-secondary">نشر خبر</a>
             </div>
         </nav>
@@ -424,9 +425,8 @@
         }
 
         function showLogin() {
-            // This would typically redirect to a login page
-            // For now, we'll just show an alert
-            alert('سيتم إضافة صفحة تسجيل الدخول قريباً');
+            // Redirect to login page
+            window.location.href = 'login.html';
         }
 
         // Password confirmation validation
