@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بلدروز - الموقع الرسمي لقضاء بلدروز</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="الموقع الرسمي لقضاء بلدروز في محافظة ديالى، العراق. تابع آخر الأخبار المحلية والفعاليات في المنطقة.">
+    <meta name="keywords" content="بلدروز، ديالى، العراق، أخبار محلية، قضاء بلدروز">
+    <meta name="author" content="بلدروز">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="بلدروز - الموقع الرسمي">
+    <meta property="og:description" content="الموقع الرسمي لقضاء بلدروز في محافظة ديالى، العراق">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1 class="logo">🏛️ بلدروز</h1>
+                    <p class="subtitle">الموقع الرسمي لقضاء بلدروز - محافظة ديالى - العراق</p>
+                </div>
+                <div class="auth-section" id="authSection">
+                    <button class="btn" id="loginBtn">
+                        <span>📱</span>
+                        تسجيل الدخول بـ Google
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h2 class="welcome-title">أهلاً وسهلاً بكم في بلدروز</h2>
+                <p class="welcome-description">
+                    قضاء بلدروز هو أحد أقضية محافظة ديالى في العراق، يتميز بتاريخه العريق وموقعه الاستراتيجي. 
+                    هذا الموقع مخصص لخدمة أبناء القضاء ونقل آخر الأخبار والمعلومات المحلية.
+                </p>
+            </section>
+
+            <!-- News Section -->
+            <section class="news-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>📰</span>
+                        الأخبار المحلية
+                    </h2>
+                    <button class="btn btn-success hidden" id="addNewsBtn">
+                        <span>➕</span>
+                        إضافة خبر جديد
+                    </button>
+                </div>
+
+                <!-- Loading -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل الأخبار...</p>
+                </div>
+
+                <!-- News Grid -->
+                <div class="news-grid" id="newsGrid">
+                    <!-- News items will be loaded here dynamically -->
+                </div>
+            </section>
+
+            <!-- Future Sections Placeholder -->
+            <section class="future-sections" style="margin-top: 4rem; text-align: center; padding: 3rem; background: #f8f9ff; border-radius: 20px;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">أقسام قادمة قريباً</h3>
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #666;">
+                        <span style="font-size: 1.5rem;">🛒</span>
+                        <span>السوق المحلي</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #666;">
+                        <span style="font-size: 1.5rem;">⚡</span>
+                        <span>جدول الكهرباء</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #666;">
+                        <span style="font-size: 1.5rem;">📸</span>
+                        <span>معرض الصور</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #666;">
+                        <span style="font-size: 1.5rem;">📞</span>
+                        <span>أرقام مهمة</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- News Modal -->
+    <div id="newsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">إضافة خبر جديد</h3>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            
+            <form id="newsForm">
+                <div class="form-group">
+                    <label for="newsTitle">عنوان الخبر *</label>
+                    <input type="text" id="newsTitle" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newsDescription">وصف الخبر *</label>
+                    <textarea id="newsDescription" name="description" required placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newsImage">صورة الخبر (اختيارية)</label>
+                    <input type="file" id="newsImage" name="image" accept="image/*">
+                </div>
+                
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn btn-danger" onclick="closeNewsModal()">
+                        <span>❌</span>
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <span>💾</span>
+                        حفظ الخبر
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #f8f9ff; padding: 2rem 0; margin-top: 4rem; text-align: center; color: #666; border-top: 1px solid #e0e0e0;">
+        <div class="container">
+            <p>&copy; 2024 بلدروز - جميع الحقوق محفوظة</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">موقع مخصص لخدمة أبناء قضاء بلدروز في محافظة ديالى</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
