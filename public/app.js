@@ -594,14 +594,15 @@ async function editNews(newsId) {
     }
     
     try {
-        const q = query(collection(db, 'news'), where('__name__', '==', newsId));
-        const querySnapshot = await getDocs(q);
-        const newsData = querySnapshot.docs[0]?.data();
+        const newsRef = doc(db, 'news', newsId);
+        const newsSnapshot = await getDocs(query(collection(db, 'news'), where('__name__', '==', newsId)));
         
-        if (!newsData) {
+        if (newsSnapshot.empty) {
             showToast('الخبر غير موجود', 'error');
             return;
         }
+        
+        const newsData = newsSnapshot.docs[0].data();
         
         currentEditingNews = newsId;
         modalTitle.textContent = 'تعديل الخبر';
@@ -626,12 +627,33 @@ async function deleteNews(newsId) {
     }
     
     try {
-        await deleteDoc(doc(db, 'news', newsId));
+        showToast('جاري حذف الخبر...', 'info');
+        
+        // First, get the news document to check if it has an image
+        const newsRef = doc(db, 'news', newsId);
+        const newsSnapshot = await getDocs(query(collection(db, 'news'), where('__name__', '==', newsId)));
+        
+        if (!newsSnapshot.empty) {
+            const newsData = newsSnapshot.docs[0].data();
+            
+            // Delete the image from storage if it exists
+            if (newsData.imageUrl) {
+                try {
+                    const imageRef = ref(storage, newsData.imageUrl);
+                    await deleteObject(imageRef);
+                } catch (imageError) {
+                    console.warn('تحذير: لم يتم حذف الصورة:', imageError);
+                }
+            }
+        }
+        
+        // Delete the news document
+        await deleteDoc(newsRef);
         loadNews();
         showToast('تم حذف الخبر بنجاح', 'success');
     } catch (error) {
         console.error('خطأ في حذف الخبر:', error);
-        showToast('حدث خطأ في حذف الخبر', 'error');
+        showToast('حدث خطأ في حذف الخبر: ' + (error.message || 'خطأ غير معروف'), 'error');
     }
 }
 
