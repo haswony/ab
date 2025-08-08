@@ -3,8 +3,15 @@ import {
     auth, 
     storage, 
     provider, 
-    ADMIN_EMAIL,
+    ADMIN_EMAILS,
+    SUPER_ADMIN_EMAIL,
+    ADMIN_PERMISSIONS,
     isAdmin,
+    isSuperAdmin,
+    hasPermission,
+    canDeleteNews,
+    canEditNews,
+    canAddNews,
     sanitizeInput,
     validateNewsData,
     collection, 
@@ -159,8 +166,8 @@ function updateUI() {
             </div>
         `;
         
-        // Show admin features if user is admin
-        if (isAdmin(currentUser)) {
+        // Show admin features based on permissions
+        if (canAddNews(currentUser)) {
             addNewsBtn?.classList.remove('hidden');
         } else {
             addNewsBtn?.classList.add('hidden');
@@ -206,6 +213,14 @@ function updateSidebar() {
                     <a href="#" class="nav-link ${currentPage === 'admin' ? 'active' : ''}" data-page="admin">
                         <span>⚙️</span>
                         لوحة الإدارة
+                    </a>
+                </li>
+                ` : ''}
+                ${isSuperAdmin(currentUser) ? `
+                <li>
+                    <a href="#" class="nav-link ${currentPage === 'permissions' ? 'active' : ''}" data-page="permissions">
+                        <span>🔐</span>
+                        إدارة الصلاحيات
                     </a>
                 </li>
                 ` : ''}
@@ -262,6 +277,14 @@ function navigateToPage(page) {
                 navigateToPage('home');
             }
             break;
+        case 'permissions':
+            if (isSuperAdmin(currentUser)) {
+                showPermissionsPage();
+            } else {
+                showToast('غير مصرح لك بالوصول لهذه الصفحة', 'error');
+                navigateToPage('home');
+            }
+            break;
         default:
             showHomePage();
     }
@@ -285,7 +308,7 @@ function showHomePage() {
                     <span>📰</span>
                     الأخبار المحلية
                 </h2>
-                ${isAdmin(currentUser) ? `
+                ${canAddNews(currentUser) ? `
                 <button class="btn btn-success" id="addNewsBtn">
                     <span>➕</span>
                     إضافة خبر جديد
@@ -453,6 +476,134 @@ function showAdminPage() {
     loadAdminStats();
 }
 
+function showPermissionsPage() {
+    if (!isSuperAdmin(currentUser)) {
+        showToast('غير مصرح لك بالوصول لهذه الصفحة', 'error');
+        navigateToPage('home');
+        return;
+    }
+    
+    mainContent.innerHTML = `
+        <div class="profile-container">
+            <div class="page-header">
+                <h1 class="page-title">إدارة الصلاحيات</h1>
+                <p class="page-description">إدارة صلاحيات المشرفين والمستخدمين</p>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-info">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span>🔐</span>
+                        قواعد الصلاحيات الحالية
+                    </h3>
+                    
+                    <div class="permissions-grid">
+                        ${Object.entries(ADMIN_PERMISSIONS).map(([email, perms]) => `
+                            <div class="permission-card">
+                                <div class="permission-header">
+                                    <div class="admin-info">
+                                        <span class="admin-email">${email}</span>
+                                        <span class="admin-level ${perms.level}">${perms.level === 'super_admin' ? 'مشرف عام' : 'مشرف'}</span>
+                                    </div>
+                                </div>
+                                <div class="permissions-list">
+                                    ${perms.permissions.map(perm => `
+                                        <div class="permission-item">
+                                            <span class="permission-icon">${getPermissionIcon(perm)}</span>
+                                            <span class="permission-name">${getPermissionName(perm)}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-info">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📊</span>
+                        إحصائيات الصلاحيات
+                    </h3>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">${Object.keys(ADMIN_PERMISSIONS).length}</div>
+                            <div class="stat-label">إجمالي المشرفين</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${Object.values(ADMIN_PERMISSIONS).filter(p => p.level === 'super_admin').length}</div>
+                            <div class="stat-label">مشرفين عامين</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${Object.values(ADMIN_PERMISSIONS).filter(p => p.permissions.includes('delete_news')).length}</div>
+                            <div class="stat-label">مخول لهم الحذف</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-info">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--warning-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span>⚠️</span>
+                        تحذيرات أمنية
+                    </h3>
+                    
+                    <div class="security-warnings">
+                        <div class="warning-item">
+                            <span class="warning-icon">🔒</span>
+                            <div class="warning-content">
+                                <div class="warning-title">صلاحية الحذف محدودة</div>
+                                <div class="warning-text">فقط المشرفين المخولين يمكنهم حذف الأخبار</div>
+                            </div>
+                        </div>
+                        <div class="warning-item">
+                            <span class="warning-icon">👥</span>
+                            <div class="warning-content">
+                                <div class="warning-title">نظام متعدد المستويات</div>
+                                <div class="warning-text">المشرف العام له صلاحيات إضافية لإدارة النظام</div>
+                            </div>
+                        </div>
+                        <div class="warning-item">
+                            <span class="warning-icon">📝</span>
+                            <div class="warning-content">
+                                <div class="warning-title">تسجيل العمليات</div>
+                                <div class="warning-text">جميع عمليات الحذف والتعديل يتم تسجيلها</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function getPermissionIcon(permission) {
+    const icons = {
+        'delete_news': '🗑️',
+        'edit_news': '✏️',
+        'add_news': '➕',
+        'manage_users': '👥',
+        'view_analytics': '📊',
+        'system_settings': '⚙️'
+    };
+    return icons[permission] || '🔧';
+}
+
+function getPermissionName(permission) {
+    const names = {
+        'delete_news': 'حذف الأخبار',
+        'edit_news': 'تعديل الأخبار',
+        'add_news': 'إضافة الأخبار',
+        'manage_users': 'إدارة المستخدمين',
+        'view_analytics': 'عرض الإحصائيات',
+        'system_settings': 'إعدادات النظام'
+    };
+    return names[permission] || permission;
+}
+
 async function loadAdminStats() {
     try {
         const q = query(collection(db, 'news'), orderBy('createdAt', 'desc'));
@@ -484,7 +635,8 @@ async function loadNews() {
         
         const newsHtml = querySnapshot.docs.map(doc => {
             const news = doc.data();
-            const adminUser = isAdmin(currentUser);
+            const canEdit = canEditNews(currentUser);
+            const canDelete = canDeleteNews(currentUser);
             
             return `
                 <div class="news-card" data-id="${doc.id}">
@@ -502,16 +654,20 @@ async function loadNews() {
                                 ${sanitizeInput(news.authorName || 'إدارة الموقع')}
                             </div>
                         </div>
-                        ${adminUser ? `
+                        ${(canEdit || canDelete) ? `
                             <div class="admin-actions">
+                                ${canEdit ? `
                                 <button class="btn btn-sm btn-success" onclick="editNews('${doc.id}')">
                                     <span>✏️</span>
                                     تعديل
                                 </button>
-                                <button class="btn btn-sm btn-danger" onclick="deleteNews('${doc.id}')">
+                                ` : ''}
+                                ${canDelete ? `
+                                <button class="btn btn-sm btn-danger" onclick="deleteNews('${doc.id}')" title="حذف الخبر - يتطلب صلاحية خاصة">
                                     <span>🗑️</span>
                                     حذف
                                 </button>
+                                ` : ''}
                             </div>
                         ` : ''}
                     </div>
@@ -575,8 +731,8 @@ function formatDate(timestamp) {
 }
 
 function openAddNewsModal() {
-    if (!isAdmin(currentUser)) {
-        showToast('غير مصرح لك بهذا الإجراء', 'error');
+    if (!canAddNews(currentUser)) {
+        showToast('غير مصرح لك بإضافة الأخبار', 'error');
         return;
     }
     
@@ -588,8 +744,8 @@ function openAddNewsModal() {
 }
 
 async function editNews(newsId) {
-    if (!isAdmin(currentUser)) {
-        showToast('غير مصرح لك بهذا الإجراء', 'error');
+    if (!canEditNews(currentUser)) {
+        showToast('غير مصرح لك بتعديل الأخبار', 'error');
         return;
     }
     
@@ -617,12 +773,17 @@ async function editNews(newsId) {
 }
 
 async function deleteNews(newsId) {
-    if (!isAdmin(currentUser)) {
-        showToast('غير مصرح لك بهذا الإجراء', 'error');
+    if (!canDeleteNews(currentUser)) {
+        showToast('غير مصرح لك بحذف الأخبار - تحتاج صلاحية خاصة', 'error');
         return;
     }
     
-    if (!confirm('هل أنت متأكد من حذف هذا الخبر؟ لا يمكن التراجع عن هذا الإجراء.')) {
+    // إضافة تأكيد مضاعف للحذف
+    if (!confirm('⚠️ تحذير: حذف الأخبار يتطلب صلاحية خاصة!\n\nهل أنت متأكد من حذف هذا الخبر؟ لا يمكن التراجع عن هذا الإجراء.')) {
+        return;
+    }
+    
+    if (!confirm('تأكيد نهائي: هل تريد فعلاً حذف هذا الخبر؟')) {
         return;
     }
     
@@ -667,8 +828,13 @@ function closeNewsModal() {
 async function handleNewsSubmit(e) {
     e.preventDefault();
     
-    if (!isAdmin(currentUser)) {
-        showToast('غير مصرح لك بهذا الإجراء', 'error');
+    if (currentEditingNews && !canEditNews(currentUser)) {
+        showToast('غير مصرح لك بتعديل الأخبار', 'error');
+        return;
+    }
+    
+    if (!currentEditingNews && !canAddNews(currentUser)) {
+        showToast('غير مصرح لك بإضافة الأخبار', 'error');
         return;
     }
     

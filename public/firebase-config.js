@@ -23,12 +23,51 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const provider = new GoogleAuthProvider();
 
-// Admin email
-const ADMIN_EMAIL = 'alshmryh972@gmail.com';
+// Admin emails and roles system
+const ADMIN_EMAILS = ['alshmryh972@gmail.com'];
+const SUPER_ADMIN_EMAIL = 'alshmryh972@gmail.com';
+
+// Admin permissions structure
+const ADMIN_PERMISSIONS = {
+  'alshmryh972@gmail.com': {
+    level: 'super_admin',
+    permissions: [
+      'delete_news',
+      'edit_news', 
+      'add_news',
+      'manage_users',
+      'view_analytics',
+      'system_settings'
+    ]
+  }
+  // يمكن إضافة مشرفين آخرين هنا
+};
 
 // Security helper functions
 const isAdmin = (user) => {
-  return user && user.email === ADMIN_EMAIL;
+  return user && ADMIN_EMAILS.includes(user.email);
+};
+
+const isSuperAdmin = (user) => {
+  return user && user.email === SUPER_ADMIN_EMAIL;
+};
+
+const hasPermission = (user, permission) => {
+  if (!user || !isAdmin(user)) return false;
+  const userPerms = ADMIN_PERMISSIONS[user.email];
+  return userPerms && userPerms.permissions.includes(permission);
+};
+
+const canDeleteNews = (user) => {
+  return hasPermission(user, 'delete_news');
+};
+
+const canEditNews = (user) => {
+  return hasPermission(user, 'edit_news');
+};
+
+const canAddNews = (user) => {
+  return hasPermission(user, 'add_news');
 };
 
 const sanitizeInput = (input) => {
@@ -51,8 +90,15 @@ export {
   auth, 
   storage, 
   provider, 
-  ADMIN_EMAIL,
+  ADMIN_EMAILS,
+  SUPER_ADMIN_EMAIL,
+  ADMIN_PERMISSIONS,
   isAdmin,
+  isSuperAdmin,
+  hasPermission,
+  canDeleteNews,
+  canEditNews,
+  canAddNews,
   sanitizeInput,
   validateNewsData,
   collection, 
