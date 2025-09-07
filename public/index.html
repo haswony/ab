@@ -1,188 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بلدروز - الموقع الرسمي لقضاء بلدروز</title>
-    
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="الموقع الرسمي لقضاء بلدروز في محافظة ديالى، العراق. تابع آخر الأخبار المحلية والفعاليات في المنطقة.">
-    <meta name="keywords" content="بلدروز، ديالى، العراق، أخبار محلية، قضاء بلدروز">
-    <meta name="author" content="بلدروز">
-    
-    <!-- Open Graph for Social Media -->
-    <meta property="og:title" content="بلدروز - الموقع الرسمي">
-    <meta property="og:description" content="الموقع الرسمي لقضاء بلدروز في محافظة ديالى، العراق">
-    <meta property="og:type" content="website">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-section">
-                    <h1 class="logo">
-                        <span>🏛️</span>
-                        بلدروز
-                    </h1>
-                    <p class="subtitle">الموقع الرسمي لقضاء بلدروز - محافظة ديالى - العراق</p>
-                </div>
-                <div class="header-actions">
-                    <div class="auth-section" id="authSection">
-                        <button class="btn btn-primary auth-btn" data-action="login">
-                            <span>📱</span>
-                            تسجيل الدخول
-                        </button>
-                    </div>
-                    <button class="menu-toggle" id="menuToggle">
-                        <span>☰</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sidebar -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h3>القائمة</h3>
-            <button class="sidebar-close" id="sidebarClose">
-                <span>✕</span>
-            </button>
-        </div>
-        <div class="sidebar-content" id="sidebarContent">
-            <!-- Content will be loaded dynamically -->
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="container">
-            <div id="mainContent">
-                <!-- Welcome Section -->
-                <section class="welcome-section">
-                    <h2 class="welcome-title">أهلاً وسهلاً بكم في بلدروز</h2>
-                    <p class="welcome-description">
-                        قضاء بلدروز هو أحد أقضية محافظة ديالى في العراق، يتميز بتاريخه العريق وموقعه الاستراتيجي. 
-                        هذا الموقع مخصص لخدمة أبناء القضاء ونقل آخر الأخبار والمعلومات المحلية.
-                    </p>
-                </section>
-
-                <!-- News Section -->
-                <section class="news-section">
-                    <div class="section-header">
-                        <h2 class="section-title">
-                            <span>📰</span>
-                            الأخبار المحلية
-                        </h2>
-                        <button class="btn btn-success hidden" id="addNewsBtn">
-                            <span>➕</span>
-                            إضافة خبر جديد
-                        </button>
-                    </div>
-
-                    <!-- Loading -->
-                    <div class="loading hidden" id="loading">
-                        <div class="spinner"></div>
-                        <p>جاري تحميل الأخبار...</p>
-                    </div>
-
-                    <!-- News Grid -->
-                    <div class="news-grid" id="newsGrid">
-                        <!-- News items will be loaded here dynamically -->
-                    </div>
-                </section>
-
-                <!-- Future Sections -->
-                <section class="future-sections">
-                    <h3 class="future-title">أقسام قادمة قريباً</h3>
-                    <div class="future-grid">
-                        <div class="future-item">
-                            <div class="future-icon">🛒</div>
-                            <div class="future-label">السوق المحلي</div>
-                        </div>
-                        <div class="future-item">
-                            <div class="future-icon">⚡</div>
-                            <div class="future-label">جدول الكهرباء</div>
-                        </div>
-                        <div class="future-item">
-                            <div class="future-icon">📸</div>
-                            <div class="future-label">معرض الصور</div>
-                        </div>
-                        <div class="future-item">
-                            <div class="future-icon">📞</div>
-                            <div class="future-label">أرقام مهمة</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
-
-    <!-- News Modal -->
-    <div id="newsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modalTitle">إضافة خبر جديد</h3>
-                <button class="modal-close" id="modalClose">
-                    <span>✕</span>
-                </button>
-            </div>
-            
-            <div class="modal-body">
-                <form id="newsForm">
-                    <div class="form-group">
-                        <label for="newsTitle" class="form-label">عنوان الخبر *</label>
-                        <input type="text" id="newsTitle" name="title" class="form-input" required maxlength="200" placeholder="اكتب عنوان الخبر هنا...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="newsDescription" class="form-label">محتوى الخبر *</label>
-                        <textarea id="newsDescription" name="description" class="form-textarea" required maxlength="2000" placeholder="اكتب تفاصيل الخبر هنا..."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="newsImage" class="form-label">صورة الخبر (اختيارية)</label>
-                        <input type="file" id="newsImage" name="image" class="form-input form-file" accept="image/*">
-                        <small style="color: var(--gray-500); font-size: 0.875rem; margin-top: 0.5rem; display: block;">الحد الأقصى: 5 ميجابايت</small>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeNewsModal()">
-                    <span>❌</span>
-                    إلغاء
-                </button>
-                <button type="submit" form="newsForm" class="btn btn-success">
-                    <span>💾</span>
-                    حفظ الخبر
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer style="background: var(--gray-50); padding: 2rem 0; margin-top: 4rem; text-align: center; color: var(--gray-600); border-top: 1px solid var(--gray-200);">
-        <div class="container">
-            <p style="font-weight: 500;">&copy; 2024 بلدروز - جميع الحقوق محفوظة</p>
-            <p style="margin-top: 0.5rem; font-size: 0.875rem;">موقع مخصص لخدمة أبناء قضاء بلدروز في محافظة ديالى</p>
-            <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem; font-size: 0.875rem;">
-                <span>🏛️ موقع رسمي</span>
-                <span>🔒 آمن ومحمي</span>
-                <span>📱 متجاوب مع جميع الأجهزة</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script type="module" src="app.js"></script>
-</body>
-</html>
