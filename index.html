@@ -18,7 +18,23 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="بلدروز - منصة الإعلانات المحلية">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:site_name" content="بلدروز">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="بلدروز - منصة الإعلانات المحلية">
+  <meta property="og:description" content="اكتشف وتصفح الإعلانات المحلية في بلدروز">
+  <meta property="og:image" content="https://baladruz.com/icons/baladruz.png">
+  <meta property="og:url" content="https://baladruz.com">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@baladruz">
+  <meta name="twitter:title" content="بلدروز - منصة الإعلانات المحلية">
+  <meta name="twitter:description" content="اكتشف وتصفح الإعلانات المحلية في بلدروز">
+  <meta name="twitter:image" content="https://baladruz.com/icons/baladruz.png">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -29,8 +45,55 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>baladroz</title>
+  <title>بلدروز - منصة الإعلانات المحلية</title>
   <link rel="manifest" href="manifest.json">
+  
+  <!-- Dynamic Meta Tags Script -->
+  <script>
+    window.updateProductMeta = function(productId, title, description, imageUrl) {
+      // Update title
+      document.title = title + ' - بلدروز';
+      
+      // Update existing meta tags or create new ones
+      function updateOrCreateMeta(property, content, isProperty = true) {
+        const attribute = isProperty ? 'property' : 'name';
+        let meta = document.querySelector(`meta[${attribute}="${property}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute(attribute, property);
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+      }
+      
+      // Update Open Graph tags
+      updateOrCreateMeta('og:title', title);
+      updateOrCreateMeta('og:description', description);
+      updateOrCreateMeta('og:image', imageUrl);
+      updateOrCreateMeta('og:url', `https://baladruz.com/#/product/${productId}`);
+      
+      // Update Twitter tags
+      updateOrCreateMeta('twitter:title', title, false);
+      updateOrCreateMeta('twitter:description', description, false);
+      updateOrCreateMeta('twitter:image', imageUrl, false);
+      
+      // Update regular description
+      updateOrCreateMeta('description', description, false);
+    };
+    
+    // Update meta tags based on URL hash on page load
+    window.addEventListener('load', function() {
+      const hash = window.location.hash;
+      if (hash.includes('/product/')) {
+        // Extract product ID from hash
+        const productIdMatch = hash.match(/#\/product\/(.+)$/);
+        if (productIdMatch) {
+          const productId = productIdMatch[1];
+          // Meta tags will be updated by Flutter when product data is loaded
+        }
+      }
+    });
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>
