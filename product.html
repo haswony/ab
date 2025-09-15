@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/">
+  
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="منتج - بلدروز">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph meta tags for better sharing -->
+  <meta property="og:title" content="منتج - بلدروز">
+  <meta property="og:description" content="اكتشف هذا المنتج الرائع على بلدروز">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="بلدروز">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="بلدروز">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>منتج - بلدروز</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script>
+    // Extract product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id') || window.location.pathname.split('/').pop();
+    
+    // Store product ID for Flutter to use
+    if (productId) {
+      localStorage.setItem('deeplink_product_id', productId);
+      localStorage.setItem('deeplink_url', window.location.href);
+    }
+    
+    // Redirect to main app
+    window.location.href = '/';
+  </script>
+  
+  <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+    <h2>جاري تحميل المنتج...</h2>
+    <p>يتم توجيهك إلى التطبيق</p>
+  </div>
+  
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
