@@ -35,7 +35,7 @@
   <meta property="og:url" content="https://baladruz.com/">
   <meta property="og:title" content="بلدروز - منصة بيع وشراء المنتجات في العراق">
   <meta property="og:description" content="منصة بلدروز للبيع والشراء في العراق. ابحث عن المنتجات المستعملة والجديدة، السيارات، العقارات، والمزيد.">
-  <meta property="og:image" content="https://baladruz.com/assets/icon/baladruz.png">
+  <meta property="og:image" content="https://baladruz.com/baladruz.png">
   <meta property="og:site_name" content="بلدروز">
   <meta property="og:locale" content="ar_IQ">
 
@@ -44,7 +44,7 @@
   <meta property="twitter:url" content="https://baladruz.com/">
   <meta property="twitter:title" content="بلدروز - منصة بيع وشراء المنتجات في العراق">
   <meta property="twitter:description" content="منصة بلدروز للبيع والشراء في العراق. ابحث عن المنتجات المستعملة والجديدة، السيارات، العقارات، والمزيد.">
-  <meta property="twitter:image" content="https://baladruz.com/assets/icon/baladruz.png">
+  <meta property="twitter:image" content="https://baladruz.com/baladruz.png">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -54,6 +54,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="shortcut icon" type="image/png" href="baladruz.png"/>
 
   <title>baladroz</title>
   <link rel="manifest" href="manifest.json">
@@ -90,14 +91,14 @@
       // Update Open Graph tags
       updateOrCreateMetaTag('og:title', productData.title + ' - بلدروز', true);
       updateOrCreateMetaTag('og:description', productData.description || 'منتج معروض للبيع في بلدروز', true);
-      updateOrCreateMetaTag('og:image', productData.imageUrl || 'https://baladruz.com/assets/icon/baladruz.png', true);
+      updateOrCreateMetaTag('og:image', productData.imageUrl || 'https://baladruz.com/baladruz.png', true);
       updateOrCreateMetaTag('og:url', window.location.href, true);
       updateOrCreateMetaTag('og:type', 'product', true);
       
       // Update Twitter meta tags
       updateOrCreateMetaTag('twitter:title', productData.title + ' - بلدروز', true);
       updateOrCreateMetaTag('twitter:description', productData.description || 'منتج معروض للبيع في بلدروز', true);
-      updateOrCreateMetaTag('twitter:image', productData.imageUrl || 'https://baladruz.com/assets/icon/baladruz.png', true);
+      updateOrCreateMetaTag('twitter:image', productData.imageUrl || 'https://baladruz.com/baladruz.png', true);
       updateOrCreateMetaTag('twitter:card', 'summary_large_image', true);
       
       // Add product-specific meta tags
@@ -127,7 +128,7 @@
       const defaultData = {
         title: 'بلدروز - منصة بيع وشراء المنتجات في العراق',
         description: 'منصة بلدروز للبيع والشراء في العراق. ابحث عن المنتجات المستعملة والجديدة، السيارات، العقارات، والمزيد.',
-        imageUrl: 'https://baladruz.com/assets/icon/baladruz.png'
+        imageUrl: 'https://baladruz.com/baladruz.png'
       };
       
       updateMetaTags(defaultData);
@@ -190,7 +191,7 @@
           const productData = {
             title: productTitle || 'منتج للبيع',
             description: `${productTitle || 'منتج للبيع'} - ${productPrice || 'السعر متغير'} - معروض للبيع في بلدروز`,
-            imageUrl: productImage || 'https://baladruz.com/assets/icon/baladruz.png',
+            imageUrl: productImage || 'https://baladruz.com/baladruz.png',
             price: productPrice.replace('د.ع', '').trim()
           };
 

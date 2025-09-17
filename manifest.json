@@ -1,11 +1,11 @@
 {
-    "name": "baladroz",
-    "short_name": "baladroz",
+    "name": "بلدروز - منصة بيع وشراء المنتجات",
+    "short_name": "بلدروز",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "بلدروز الاول بديالى.",
+    "description": "منصة بلدروز للبيع والشراء في العراق. ابحث عن المنتجات المستعملة والجديدة، السيارات، العقارات، والمزيد.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
