@@ -1,11 +1,11 @@
 {
-    "name": "بلدروز - منصة بيع وشراء المنتجات",
-    "short_name": "بلدروز",
+    "name": "baladroz",
+    "short_name": "baladroz",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "منصة بلدروز للبيع والشراء في العراق. ابحث عن المنتجات المستعملة والجديدة، السيارات، العقارات، والمزيد.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
